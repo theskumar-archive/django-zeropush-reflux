@@ -1,45 +1,65 @@
 django-zeropush-2
 =================
 
+[![Build Status](https://travis-ci.org/theskumar/django-zeropush-reflux.svg)](https://travis-ci.org/theskumar/django-zeropush-reflux)
+
 A django app that helps you use [ZeroPush](http://zeropush.com)'s push notification API simply in your django backend for an iOS app.
 
 # django-zeropush features
 
-1. a simple HTTP POST interface for adding new push devices connected to the current django user session
-2. easy to use methods for sending push notifications to a user's all devices /or/ a group of specific devices
-3. a PushDevice model that is connected to django's built-in user model (and also works with django 1.5+ custom user models)
+- Easy to use methods for sending push notifications to a user's all devices 
+- Easy to use methods to connect iOS devices to a user.
 
-# Example code
+## Interfaces
 
-## Sending a notification to a user
-```python
-import zeropush
+### Register an iOS device
 
-# Get a user. Can also be a custom user model in django 1.5+
-the_user = User.objects.filter(username="johndoe")
-
-zeropush.notify_user(the_user, alert="Here's some notification text", sound="default", badge_number=1)
+```
+zeropush.register_apple_device(user, token)
 ```
 
-## Getting all users' push devices and sending a notification to all of them
-```python
-import zeropush
-from zeropush.models import PushDevice
+### Unregister an iOS device
 
-# PushDevice is a model in django-zeropush that has a device token (string) and is connected to a django user.
-all_devices = PushDevice.objects.all()
+```
+zeropush.deregister_apple_device(user, token)
+```
 
-zeropush.notify_devices(all_devices, alert="Here's some text to all users")
+### Send push notification
+
+```
+zeropush.send_push_notification(user, alert=None, sound=None, badge=None,
+                                info=None, expiry=None, 
+                                content_available=None, category=None) 
+```
+
+### Send bulk push notification
+
+```
+zeropush.send_bulk_push_notification(user, alert=None, sound=None, badge=None,
+                                     info=None, expiry=None, 
+                                     content_available=None, category=None) 
 ```
 
 # Installation
 
 1. Add `zeropush` to your `INSTALLED_APPS` in your project's `settings.py`
 2. Add `ZEROPUSH_AUTH_TOKEN="YOUR API TOKEN HERE"` to your `settings.py`
-3. Include `zeropush.urls` to your `urls.py` if you want a HTTP POST API for adding a push device token to a logged in user. See below for how to POST to it.
-4. Run `./manage.py syncdb` to create the PushDevice model's table.
+3. Run `./manage.py migrate` to create the PushDevice model's table.
+4. Use `zeropush.register_apple_device` method to register a device to a user.
 5. Now you can send push notifications as above!
 
-# The HTTP API for adding new push tokens
 
-Once you've added `zeropush.urls` to your `urls.py` file, a logged in user session can POST to `/zeropush/add_device/` with a parameter `token` which is the device token string to a new `PushDevice` object that associates the current django user with a specific device token.
+# LICENSE
+
+```
+Copyright (c) 2015, Saurabh Kumar
+Copyright (c) 2013, Håkan Waara
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+Neither the name of the owner nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+```
