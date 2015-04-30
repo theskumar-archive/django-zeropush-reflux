@@ -5,16 +5,11 @@
 # import shutil
 import unittest
 
+import responses
+
 # from zeropush import models
+from zeropush.utils import ZEROPUSH_NOTIFY_URL, notify_devices
 
 
-class TestZeroPush(unittest.TestCase):
-
-    def setUp(self):
-        pass
-
-    def test_something(self):
-        pass
-
-    def tearDown(self):
-        pass
+def test_hello(settings):
+    settings.ZEROPUSH_AUTH_TOKEN = "super-poweful-token"
