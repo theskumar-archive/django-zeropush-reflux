@@ -4,8 +4,8 @@ from __future__ import unicode_literals
 from setuptools import find_packages, setup
 
 setup(
-    name='django-zeropush-2',
-    version='0.2.3',
+    name='django-zeropush-reflux',
+    version='0.2.4',
     author='Saurabh Kumar',
     author_email='me@saurabh-kumar.com',
     packages=find_packages(),
