@@ -1,15 +1,17 @@
-# encoding: utf-8
-from setuptools import setup, find_packages
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
+from setuptools import find_packages, setup
+
 setup(
-    name='django-zeropush',
+    name='django-zeropush-2',
     version='0.2.3',
-    author=u'Håkan Waara',
-    author_email='hwaara@gmail.com',
+    author='Saurabh Kumar',
+    author_email='me@saurabh-kumar.com',
     packages=find_packages(),
-    url='https://github.com/hakanw/django-zeropush',
+    url='https://github.com/theskumar/django-zeropush',
     license='BSD licence, see LICENCE.txt',
     description='ZeroPush iOS push notifications support for django',
-    #long_description=open('README.txt').read(),
     install_requires=['requests'],
     zip_safe=False,
 )

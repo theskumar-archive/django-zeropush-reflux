@@ -1,5 +1,5 @@
-django-zeropush
-===============
+django-zeropush-2
+=================
 
 A django app that helps you use [ZeroPush](http://zeropush.com)'s push notification API simply in your django backend for an iOS app.
 
@@ -43,6 +43,3 @@ zeropush.notify_devices(all_devices, alert="Here's some text to all users")
 # The HTTP API for adding new push tokens
 
 Once you've added `zeropush.urls` to your `urls.py` file, a logged in user session can POST to `/zeropush/add_device/` with a parameter `token` which is the device token string to a new `PushDevice` object that associates the current django user with a specific device token.
-
-
-
