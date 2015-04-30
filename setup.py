@@ -1,17 +1,47 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+from __future__ import print_function, unicode_literals
 
-from setuptools import find_packages, setup
+import os
+import sys
+
+from setuptools import setup
+
+VERSION = '0.2.4'
+
+if sys.argv[-1] == 'publish':
+    os.system('python setup.py sdist upload')
+    print("You probably want to also tag the version now:")
+    print("  git tag -a v%s -m 'version %s'" % (VERSION, VERSION))
+    print("  git push --tags")
+    sys.exit()
 
 setup(
     name='django-zeropush-reflux',
-    version='0.2.4',
+    version=VERSION,
     author='Saurabh Kumar',
     author_email='me@saurabh-kumar.com',
-    packages=find_packages(),
-    url='https://github.com/theskumar/django-zeropush',
+    packages=[
+        'zeropush',
+    ],
+    include_package_data=True,
+    install_requires=[
+        'requests'
+    ],
+    url='https://github.com/theskumar/django-zeropush-reflux',
     license='BSD licence, see LICENCE.txt',
     description='ZeroPush iOS push notifications support for django',
-    install_requires=['requests'],
+
     zip_safe=False,
+    classifiers=[
+        'Development Status :: 2 - Pre-Alpha',
+        'Framework :: Django',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: BSD License',
+        'Natural Language :: English',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.6',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.3',
+    ],
 )
