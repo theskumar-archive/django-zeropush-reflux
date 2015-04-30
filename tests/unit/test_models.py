@@ -6,7 +6,7 @@ import pytest
 
 # # Clustr Stuff
 from zeropush.models import PushDevice
-from zeropush import services as zeropush_service
+import zeropush
 
 from .. import factories as f
 
@@ -18,7 +18,10 @@ def test_register_device(settings):
     # device should get attached to only user
     users = f.UserFactory.create_batch(2)
 
-    zeropush_service.register_apple_device(users[0], 'abc')
+    zeropush.register_apple_device(users[0], 'abc')
     assert PushDevice.objects.count() == 1
-    zeropush_service.register_apple_device(users[1], 'abc')
+    zeropush.register_apple_device(users[1], 'abc')
     assert PushDevice.objects.count() == 1
+
+    zeropush.deregister_apple_device(users[1], 'abc')
+    assert PushDevice.objects.count() == 0

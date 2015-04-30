@@ -1,15 +1,12 @@
 # -*- coding: utf-8 -*-
 # Standard Library
 import os
-import sys
 
 # Third Party Stuff
 import django
 import pytest
 
 # from .fixtures import *  # noqa
-
-sys.path.append(os.path.dirname(__file__))
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "tests.test_settings")
 
