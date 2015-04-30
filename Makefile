@@ -27,13 +27,13 @@ lint:
 	flake8 zeropush tests
 
 test:
-	python runtests.py tests
+	py.test
 
 test-all:
 	tox
 
 coverage:
-	coverage run --source {{ cookiecutter.app_name }} runtests.py tests
+	coverage run --source zeropush -m py.test
 	coverage report -m
 	coverage html
 	open htmlcov/index.html

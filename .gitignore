@@ -74,3 +74,6 @@ celerybeat-schedule
 
 # python-dotenv
 .env
+
+# coverage
+htmlcov/
