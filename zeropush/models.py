@@ -22,5 +22,5 @@ class PushDevice(models.Model):
         verbose_name_plural = _('push devices')
         ordering = ('-modified',)
 
-    def __unicode__(self):
+    def __str__(self):
         return u"UserDevice %s" % self.token
