@@ -1,7 +1,7 @@
 django-zeropush-2
 =================
 
-[![Build Status](https://travis-ci.org/theskumar/django-zeropush-reflux.svg)](https://travis-ci.org/theskumar/django-zeropush-reflux)
+[![Build Status](https://travis-ci.org/theskumar/django-zeropush-reflux.svg)](https://travis-ci.org/theskumar/django-zeropush-reflux) [![Coverage Status](https://coveralls.io/repos/theskumar/django-zeropush-reflux/badge.svg)](https://coveralls.io/r/theskumar/django-zeropush-reflux)
 
 A django app that helps you use [ZeroPush](http://zeropush.com)'s push notification API simply in your django backend for an iOS app.
 
