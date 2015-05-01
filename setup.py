@@ -4,7 +4,7 @@ from __future__ import print_function, unicode_literals
 import os
 import sys
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 VERSION = '0.2.4'
 
@@ -20,10 +20,8 @@ setup(
     version=VERSION,
     author='Saurabh Kumar',
     author_email='me@saurabh-kumar.com',
-    packages=[
-        'zeropush',
-    ],
-    include_package_data=True,
+    packages=find_packages(exclude=['*tests*']),
+    include_package_data=False,
     install_requires=[
         'requests'
     ],
