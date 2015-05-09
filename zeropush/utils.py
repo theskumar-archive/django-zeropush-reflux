@@ -9,6 +9,8 @@ from datetime import timedelta
 # Third Party Stuff
 import requests
 from django.conf import settings
+from django.utils.encoding import force_str
+from django.utils import six
 
 logger = logging.getLogger(__name__)
 
@@ -27,6 +29,9 @@ def notify_devices(devices, alert=None, sound=None, badge='+1', info=None, expir
             "device_tokens": [device.token for device in devices]
         }
         # add alert payload
+        if isinstance(alert, six.string_types):
+            alert = force_str(alert)
+
         params.update({"alert": alert})
 
         if sound is not None:
